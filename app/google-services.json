@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "358676335768",
+    "firebase_url": "https://outland-daf13.firebaseio.com",
+    "project_id": "outland-daf13",
+    "storage_bucket": "outland-daf13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358676335768:android:04093f6c6f4921b7",
+        "android_client_info": {
+          "package_name": "com.example.outland"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358676335768-beocfaibmsup2k8ql2p4qj8s02bck160.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.outland",
+            "certificate_hash": "6986f21c000413b8ca85e130235e29ab9d95435f"
+          }
+        },
+        {
+          "client_id": "358676335768-rfds0sf2haf786qov1ai2h9j4t8vdc98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZZq74yVdEu2aYkSGAUmxZRKG-N03q4Zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358676335768-rfds0sf2haf786qov1ai2h9j4t8vdc98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

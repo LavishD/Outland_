@@ -1,6 +1,5 @@
 package com.example.outland;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,20 +84,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView categoryRecyclerView;
     private CategoryAdaptor categoryAdaptor;
 
-    ////////////banner
-    private ViewPager bannerSliderViewPager;
-    private List<SliderModel> sliderModelList;
-    private int currentPage = 2;
-    private Timer timer;
-    final private long DELAY_TIME = 3000;
-    final private long PERIOD_TIME = 3000;
-    /////////
 
-    /////// HS Product Layout
-    private TextView hSlayoutTextView;
-    private TextView hSViewMoreTextView;
-    private RecyclerView hSRecyclerView;
-    /////// HS Product Layout
 
 
 
@@ -149,9 +134,9 @@ public class HomeFragment extends Fragment {
 
         //////// Banner
 
-        bannerSliderViewPager = view.findViewById(R.id.banner_slider_view_pager);
 
-        sliderModelList = new ArrayList<SliderModel>();
+
+        List<SliderModel>sliderModelList = new ArrayList<SliderModel>();
 
 
 
@@ -172,55 +157,8 @@ public class HomeFragment extends Fragment {
 
 
 
-        SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
-        bannerSliderViewPager.setAdapter(sliderAdapter);
-        bannerSliderViewPager.setClipToPadding(false);
-        bannerSliderViewPager.setPageMargin(60);
-
-        bannerSliderViewPager.setCurrentItem(currentPage);
 
 
-        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                    currentPage = i;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-                if (i == ViewPager.SCROLL_STATE_IDLE) {
-
-                    pageLooper();
-                }
-            }
-        };
-        bannerSliderViewPager.addOnPageChangeListener(onPageChangeListener);
-
-        startBannerSlideShow();
-        bannerSliderViewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                pageLooper();
-                stopBannerSlideShow();
-
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-
-                    startBannerSlideShow();
-                }
-
-                return false;
-            }
-        });
-
-        /////// HS Product Layout
-        hSlayoutTextView = view.findViewById(R.id.horizontal_scroll_layout_title);
-        hSViewMoreTextView = view.findViewById(R.id.horizontal_scroll_view_more);
-        hSRecyclerView = view.findViewById(R.id.horizontal_product_recycler_view);
 
         List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
         horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
@@ -244,18 +182,12 @@ public class HomeFragment extends Fragment {
         horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
                 "Sandwich Bread", "350 g"));
 
-        HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        hSRecyclerView.setLayoutManager(linearLayoutManager);
-        hSRecyclerView.setAdapter(horizontalProductScrollAdapter);
 
-        horizontalProductScrollAdapter.notifyDataSetChanged();
 
         /////// HS Product Layout
 
         ////////////////////////
-        RecyclerView testing = view.findViewById(R.id.testing);
+        RecyclerView testing = view.findViewById(R.id.home_page_recycler_view);
         LinearLayoutManager testingLayoutManger = new LinearLayoutManager(getContext());
         testingLayoutManger.setOrientation(RecyclerView.VERTICAL);
         testing.setLayoutManager(testingLayoutManger);
@@ -284,50 +216,7 @@ public class HomeFragment extends Fragment {
 
     ////// Banner
 
-    private void pageLooper(){
 
-        if (currentPage == sliderModelList.size() - 2) {
-
-            currentPage = 2;
-            bannerSliderViewPager.setCurrentItem(currentPage, false);
-
-        }
-        if (currentPage == 1) {
-
-            currentPage = sliderModelList.size() -3;
-            bannerSliderViewPager.setCurrentItem(currentPage, false);
-
-        }
-
-
-
-    }
-
-    private void startBannerSlideShow(){
-
-        final Handler handler = new Handler();
-        final Runnable update = new Runnable() {
-            @Override
-            public void run() {
-                if (currentPage >= sliderModelList.size()){
-
-                    currentPage =1;
-                }
-                bannerSliderViewPager.setCurrentItem(currentPage++,true);
-            }
-        };
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(update);
-            }
-        }, DELAY_TIME, PERIOD_TIME);
-    }
-
-    private void stopBannerSlideShow(){
-        timer.cancel();
-    }
 
 
     // TODO: Rename method, update argument and hook method into UI event

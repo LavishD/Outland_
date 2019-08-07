@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductDescriptionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_margin="16dp"
+        android:id="@+id/tv_product_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#313131"
+        android:textSize="15sp"
+        android:fontFamily="@font/cera_pro_medium"
+        android:text="Amul Butter is made from the finest fresh cream and has a subtle lactic taste which is delicate and slightly salty. It is natural, pure and tastes best over toasts and sandwiches.
+ " />
+
+</FrameLayout>

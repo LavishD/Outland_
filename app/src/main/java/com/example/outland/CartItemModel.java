@@ -4,7 +4,7 @@ public class CartItemModel {
 
 //////// making variables
     public static final int CART_ITEM = 0;
-    public static final int TOTAL_AMOUNT = 1;
+    public static final int CART_SUMMARY = 1;
 
     private int type;
 
@@ -84,6 +84,66 @@ public class CartItemModel {
     }
 
     ////// cart item
+
+    //////// cart summary
+    private String totalMrp;
+    private String discountReceived;
+    private String deliveryCharges;
+    private String subTotal;
+    private String checkoutTotal;
+
+
+    public CartItemModel(int type, String totalMrp, String discountReceived, String deliveryCharges, String subTotal, String checkoutTotal) {
+        this.type = type;
+        this.totalMrp = totalMrp;
+        this.discountReceived = discountReceived;
+        this.deliveryCharges = deliveryCharges;
+        this.subTotal = subTotal;
+        this.checkoutTotal = checkoutTotal;
+    }
+
+    public String getTotalMrp() {
+        return totalMrp;
+    }
+
+    public void setTotalMrp(String totalMrp) {
+        this.totalMrp = totalMrp;
+    }
+
+    public String getDiscountReceived() {
+        return discountReceived;
+    }
+
+    public void setDiscountReceived(String discountReceived) {
+        this.discountReceived = discountReceived;
+    }
+
+    public String getDeliverCharges() {
+        return deliveryCharges;
+    }
+
+    public void setDeliverCharges(String deliverCharges) {
+        this.deliveryCharges = deliverCharges;
+    }
+
+    public String getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(String subTotal) {
+        this.subTotal = subTotal;
+    }
+
+
+    public String getCheckoutTotal() {
+        return checkoutTotal;
+    }
+
+    public void setCheckoutTotal(String checkoutTotal) {
+        this.checkoutTotal = checkoutTotal;
+    }
+
+    /////// cart summary
 
 
 

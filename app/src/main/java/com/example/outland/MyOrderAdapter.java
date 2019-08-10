@@ -1,5 +1,6 @@
 package com.example.outland;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,13 +52,23 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         private TextView deliveryStatus;
         private TextView dateAndTimeAndItemsNo;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             deliveredDot = itemView.findViewById(R.id.delivery_dot);
             orderNo = itemView.findViewById(R.id.order_no);
             dateAndTimeAndItemsNo = itemView.findViewById(R.id.date_time_items_tv);
             deliveryStatus = itemView.findViewById(R.id.delivery_status);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent orderDetailsIntent = new Intent(itemView.getContext(), OrderDetailsActivity.class);
+                    itemView.getContext().startActivity(orderDetailsIntent);
+
+                }
+            });
 
 
 

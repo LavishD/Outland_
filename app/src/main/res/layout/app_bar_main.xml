@@ -25,15 +25,6 @@
                 android:src="@mipmap/minilogo"
                 android:adjustViewBounds="true"/>
 
-
-
-
-
-
-
-
-
-
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

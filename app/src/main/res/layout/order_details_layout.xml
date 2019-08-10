@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp">
+
+    <TextView
+        android:id="@+id/orderID_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="Order ID:"
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/order_ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/cera_pro_medium"
+        android:text="#402598-56289-69856"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/orderID_tv"
+        app:layout_constraintStart_toEndOf="@+id/orderID_tv"
+        app:layout_constraintTop_toTopOf="@+id/orderID_tv" />
+
+    <TextView
+        android:id="@+id/order_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="Order Date:"
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderID_tv" />
+
+    <TextView
+        android:id="@+id/order_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cera_pro_medium"
+        android:text="10 August 2019, 5:00 PM"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/order_date_tv"
+        app:layout_constraintStart_toStartOf="@+id/order_ID"
+        app:layout_constraintTop_toTopOf="@+id/order_date_tv" />
+
+    <TextView
+        android:id="@+id/amont_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="Amount:"
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/order_date_tv" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cera_pro_medium"
+        android:text="₹90"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/amont_tv"
+        app:layout_constraintStart_toStartOf="@+id/order_date"
+        app:layout_constraintTop_toTopOf="@+id/amont_tv" />
+
+    <ProgressBar
+        android:id="@+id/order_packed_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="60dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="8dp"
+        android:progress="0"
+        android:progressBackgroundTint="#D8D8D8"
+        android:progressTint="@color/successGreen"
+        android:rotation="90"
+        android:transformPivotX="0dp"
+        app:layout_constraintStart_toStartOf="@+id/ordered_indicator"
+        app:layout_constraintTop_toTopOf="@+id/ordered_indicator" />
+
+    <ProgressBar
+        android:id="@+id/packed_shipping_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="60dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="9dp"
+        android:progress="0"
+        android:progressBackgroundTint="#D8D8D8"
+        android:progressTint="@color/successGreen"
+        android:rotation="90"
+        android:transformPivotX="0dp"
+        app:layout_constraintStart_toStartOf="@+id/packed_indicator"
+        app:layout_constraintTop_toTopOf="@+id/packed_indicator" />
+
+    <ProgressBar
+        android:id="@+id/shipping_delivered_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="60dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="8dp"
+        android:progress="0"
+        android:progressBackgroundTint="#D8D8D8"
+        android:progressTint="@color/successGreen"
+        android:rotation="90"
+        android:transformPivotX="0dp"
+        app:layout_constraintStart_toStartOf="@+id/shipping_indicator"
+        app:layout_constraintTop_toTopOf="@+id/shipping_indicator" />
+
+    <ImageView
+        android:id="@+id/ordered_indicator"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:tint="#D8D8D8"
+        app:layout_constraintStart_toStartOf="@+id/amont_tv"
+        app:layout_constraintTop_toBottomOf="@+id/amont_tv"
+        app:srcCompat="@drawable/selected_dot" />
+
+    <ImageView
+        android:id="@+id/packed_indicator"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="50dp"
+        android:tint="#D8D8D8"
+        app:layout_constraintStart_toStartOf="@+id/ordered_indicator"
+        app:layout_constraintTop_toBottomOf="@+id/order_packed_progressBar"
+        app:srcCompat="@drawable/selected_dot" />
+
+    <ImageView
+        android:id="@+id/shipping_indicator"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="50dp"
+        android:tint="#D8D8D8"
+        app:layout_constraintStart_toStartOf="@+id/packed_indicator"
+        app:layout_constraintTop_toBottomOf="@+id/packed_shipping_progressBar"
+        app:srcCompat="@drawable/selected_dot" />
+
+    <ImageView
+        android:id="@+id/delivered_indicator"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="50dp"
+        android:tint="#D8D8D8"
+        app:layout_constraintStart_toStartOf="@+id/shipping_indicator"
+        app:layout_constraintTop_toBottomOf="@+id/shipping_delivered_progressBar"
+        app:srcCompat="@drawable/selected_dot" />
+
+    <TextView
+        android:id="@+id/placed_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/cera_pro_medium"
+        android:text="Placed"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ordered_indicator"
+        app:layout_constraintStart_toEndOf="@+id/ordered_indicator"
+        app:layout_constraintTop_toTopOf="@+id/ordered_indicator"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/placed_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="10 August 2019, 5:00 PM"
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/placed_tv"
+        app:layout_constraintStart_toEndOf="@+id/placed_tv"
+        app:layout_constraintTop_toTopOf="@+id/placed_tv" />
+
+    <TextView
+        android:id="@+id/placed_detail_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="Your order has been placed."
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/placed_tv"
+        app:layout_constraintTop_toBottomOf="@+id/placed_tv" />
+
+    <TextView
+        android:id="@+id/packed_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/cera_pro_medium"
+        android:text="Packed"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/packed_indicator"
+        app:layout_constraintStart_toEndOf="@+id/packed_indicator"
+        app:layout_constraintTop_toTopOf="@+id/packed_indicator" />
+
+    <TextView
+        android:id="@+id/packed_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="10 August 2019, 5:05 PM"
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/packed_tv"
+        app:layout_constraintStart_toEndOf="@+id/packed_tv"
+        app:layout_constraintTop_toTopOf="@+id/packed_tv" />
+
+    <TextView
+        android:id="@+id/packed_detail_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="Your order has been packed."
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/packed_tv"
+        app:layout_constraintTop_toBottomOf="@+id/packed_tv" />
+
+    <TextView
+        android:id="@+id/on_the_way_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/cera_pro_medium"
+        android:text="On the way"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shipping_indicator"
+        app:layout_constraintStart_toEndOf="@+id/shipping_indicator"
+        app:layout_constraintTop_toTopOf="@+id/shipping_indicator" />
+
+    <TextView
+        android:id="@+id/on_the_way_date"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="10 August 2019, 5:07 PM"
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/on_the_way_tv"
+        app:layout_constraintStart_toEndOf="@+id/on_the_way_tv"
+        app:layout_constraintTop_toTopOf="@+id/on_the_way_tv" />
+
+    <TextView
+        android:id="@+id/on_the_way_detail_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="Your order is on the way."
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/on_the_way_tv"
+        app:layout_constraintTop_toBottomOf="@+id/on_the_way_tv" />
+
+    <TextView
+        android:id="@+id/delivered_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/cera_pro_medium"
+        android:text="Delivered"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/delivered_indicator"
+        app:layout_constraintStart_toEndOf="@+id/delivered_indicator"
+        app:layout_constraintTop_toTopOf="@+id/delivered_indicator"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/delivered_date"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="10 August 2019, 5:15 PM"
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/delivered_tv"
+        app:layout_constraintStart_toEndOf="@+id/delivered_tv"
+        app:layout_constraintTop_toTopOf="@+id/delivered_tv" />
+
+    <TextView
+        android:id="@+id/delivered_detail_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/cera_pro_regular"
+        android:text="Your order has been delivered."
+        android:textColor="#4A4A4A"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/delivered_tv"
+        app:layout_constraintTop_toBottomOf="@+id/delivered_tv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

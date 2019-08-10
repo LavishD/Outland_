@@ -5,5 +5,6 @@
     <color name="alphaColorPrimary">#50DA2F30</color>
     <color name="colorAccent">#ffffff</color>
     <color name="colorAccentDark">#EBEBEB</color>
+    <color name="successGreen">#008C09</color>
 
 </resources>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ public class MyOrders extends Fragment {
     }
 
     private RecyclerView myOrdersRV;
+    private TextView paymentTv;
+    private TextView pamentMethod;
 
 
     @Override
@@ -35,6 +38,10 @@ public class MyOrders extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_my_orders, container, false);
 
         myOrdersRV = view.findViewById(R.id.my_orders_rv);
+        //paymentTv = view.findViewById(R.id.payment_tv);
+        //pamentMethod = view.findViewById(R.id.payment_method);
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         myOrdersRV.setLayoutManager(layoutManager);
@@ -53,6 +60,7 @@ public class MyOrders extends Fragment {
         MyOrderAdapter myOrderAdapter = new MyOrderAdapter(myOrderItemModelList);
         myOrdersRV.setAdapter(myOrderAdapter);
         myOrderAdapter.notifyDataSetChanged();
+
 
 
         return view;

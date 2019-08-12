@@ -17,9 +17,9 @@
             android:icon="@mipmap/cart_black"
             android:title="Your Cart" />
         <item
-            android:id="@+id/nav_my_wishlist"
+            android:id="@+id/nav_my_addresses"
             android:icon="@mipmap/my_wishlist"
-            android:title="Your Wishlist" />
+            android:title="Your Addresses" />
         <item
             android:id="@+id/nav_my_account"
             android:icon="@mipmap/my_account_black"

@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity
     private static final int CART_FRAGMENT = 1;
     private static final int ORDERS_FRAGMENT = 2;
 
+    public static final int MANAGE_ADDRESS = 1;
+
     private NavigationView navigationView;
     private ImageView actionbarLogo;
 
@@ -137,7 +139,12 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_my_cart) {
             gotoFragment("My Cart", new MyCartFragment(), CART_FRAGMENT);
 
-        } else if (id == R.id.nav_my_wishlist) {
+        } else if (id == R.id.nav_my_addresses) {
+
+            Intent myAddressesIntent = new Intent(this, MyAddressesActivity.class);
+            myAddressesIntent.putExtra("MODE", MANAGE_ADDRESS);
+            startActivity(myAddressesIntent);
+
 
         } else if (id == R.id.nav_my_account) {
 

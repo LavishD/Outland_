@@ -4,13 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -76,10 +73,10 @@ public class CartAdapter extends RecyclerView.Adapter {
                 String discountReceived = cartItemModelList.get(position).getDiscountReceived();
                 String deliveryCharges = cartItemModelList.get(position).getDeliverCharges();
                 String subtotal = cartItemModelList.get(position).getSubTotal();
-                String checkoutTotal = cartItemModelList.get(position).getCheckoutTotal();
+                //String checkoutTotal = cartItemModelList.get(position).getCheckoutTotal();
 
 
-                ((CartSummaryViewHolder)viewHolder).setSummary(totalMrp, discountReceived, deliveryCharges,subtotal, checkoutTotal);
+                ((CartSummaryViewHolder)viewHolder).setSummary(totalMrp, discountReceived, deliveryCharges,subtotal /*checkoutTotal*/);
 
                 break;
             default:
@@ -107,11 +104,11 @@ public class CartAdapter extends RecyclerView.Adapter {
 
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            productImage = itemView.findViewById(R.id.cart_product_image);
-            productMrp = itemView.findViewById(R.id.cart_product_mrp);
-            productPrice = itemView.findViewById(R.id.cart_product_price);
-            productName = itemView.findViewById(R.id.cart_product_name);
-            productWeight = itemView.findViewById(R.id.cart_product_weight);
+            productImage = itemView.findViewById(R.id.od_product_image);
+            productMrp = itemView.findViewById(R.id.od_product_mrp);
+            productPrice = itemView.findViewById(R.id.od_product_price);
+            productName = itemView.findViewById(R.id.od_product_name);
+            productWeight = itemView.findViewById(R.id.od_product_weight);
             productQty = itemView.findViewById(R.id.cart_product_qty);
         }
 
@@ -133,7 +130,7 @@ public class CartAdapter extends RecyclerView.Adapter {
         private TextView discountRecevied;
         private TextView deliveryCharges;
         private TextView subtotal;
-        private TextView checkoutTotal;
+       // private TextView checkoutTotal;
 
 
         public CartSummaryViewHolder(@NonNull View itemView) {
@@ -143,17 +140,17 @@ public class CartAdapter extends RecyclerView.Adapter {
             discountRecevied = itemView.findViewById(R.id.summary_discount_amount);
             deliveryCharges = itemView.findViewById(R.id.summary_delivery_charges_amount);
             subtotal = itemView.findViewById(R.id.summary_subtotal);
-            checkoutTotal = itemView.findViewById(R.id.total_cart_price);
+            // checkoutTotal = itemView.findViewById(R.id.total_cart_price);
 
         }
 
-        private void setSummary(String mrpText, String discountText, String deliveryChargesText, String subtotalText, String checkoutTotalText){
+        private void setSummary(String mrpText, String discountText, String deliveryChargesText, String subtotalText /* String checkoutTotalText*/){
 
             totalmrp.setText(mrpText);
             discountRecevied.setText(discountText);
             deliveryCharges.setText(deliveryChargesText);
             subtotal.setText(subtotalText);
-            checkoutTotal.setText(checkoutTotalText);
+            // checkoutTotal.setText(checkoutTotalText);
 
         }
     }

@@ -28,7 +28,7 @@
             android:id="@+id/summary_mrp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/cera_pro_regular"
             android:text="M.R.P."
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/cera_pro_regular"
             android:text="\u20B946"
             android:textColor="#000"
@@ -54,7 +54,7 @@
             android:id="@+id/summary_discount_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/cera_pro_regular"
             android:text="Discount Received"
@@ -67,7 +67,7 @@
             android:id="@+id/summary_deivery_charges_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/cera_pro_regular"
             android:text="Delivery Charges"
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/cera_pro_regular"
             android:text="\u20B916"
             android:textColor="#000"
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/cera_pro_regular"
             android:text="FREE"
             android:textColor="@color/colorPrimary"
@@ -106,9 +106,9 @@
             android:id="@+id/divider3"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +118,7 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/cera_bold"
@@ -134,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/cera_bold"
             android:text="\u20B930"
@@ -148,68 +148,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <LinearLayout
-        android:id="@+id/bottomCheckout"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cera_bold"
-                android:text="Total:  "
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/total_cart_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cera_bold"
-                android:text="\u20B975"
-                android:textColor="@color/colorPrimary"
-                android:textSize="25sp" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <Button
-                android:id="@+id/checkout_btn"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_round"
-                android:elevation="2dp"
-                android:fontFamily="@font/cera_pro_medium"
-                android:text="Checkout"
-                android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
-                android:textSize="17sp" />
-        </LinearLayout>
-
-    </LinearLayout>
 
 
 

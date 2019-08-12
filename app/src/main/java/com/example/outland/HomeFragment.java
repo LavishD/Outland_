@@ -49,6 +49,8 @@ public class HomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private List<CategoryModel> categoryModelList;
+    private RecyclerView homePageRV;
+    private HomePageAdapter adapter;
     private FirebaseFirestore firebaseFirestore;
     public HomeFragment() {
         // Required empty public constructor
@@ -91,7 +93,7 @@ public class HomeFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -132,26 +134,9 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-        //////// Banner
+        ///////////// Banner
 
-
-
-        List<SliderModel>sliderModelList = new ArrayList<SliderModel>();
-
-
-
-        sliderModelList.add(new SliderModel(R.drawable.banner5, "#E3F4FC"));
-        sliderModelList.add(new SliderModel(R.drawable.banner7, "#ED1B24"));
-        sliderModelList.add(new SliderModel(R.drawable.banner1, "#FCFFF4"));
-
-        sliderModelList.add(new SliderModel(R.drawable.banner2, "#F0F0F2"));
-        sliderModelList.add(new SliderModel(R.drawable.banner3, "#F7F6F1"));
-        sliderModelList.add(new SliderModel(R.drawable.banner4, "#ED1B24"));
-        sliderModelList.add(new SliderModel(R.drawable.banner5, "#E3F4FC"));
-
-        sliderModelList.add(new SliderModel(R.drawable.banner7, "#ED1B24"));
-        sliderModelList.add(new SliderModel(R.drawable.banner1, "#FCFFF4"));
-        sliderModelList.add(new SliderModel(R.drawable.banner2, "#F0F0F2"));
+        //////// Ba
 
 
 
@@ -159,54 +144,85 @@ public class HomeFragment extends Fragment {
 
 
 
-
-        List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
-                "Sandwich Bread", "350 g"));
-
+//        List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.brd, "₹35", "₹40", "English Oven Premium \n" +
+//                "Sandwich Bread", "350 g"));
+//
 
 
         /////// HS Product Layout
 
         ////////////////////////
-        RecyclerView testing = view.findViewById(R.id.home_page_recycler_view);
+        homePageRV = view.findViewById(R.id.home_page_recycler_view);
         LinearLayoutManager testingLayoutManger = new LinearLayoutManager(getContext());
         testingLayoutManger.setOrientation(RecyclerView.VERTICAL);
-        testing.setLayoutManager(testingLayoutManger);
+        homePageRV.setLayoutManager(testingLayoutManger);
+        final List<HomePageModel> homePageModelList = new ArrayList<>();
+        adapter = new HomePageAdapter(homePageModelList);
+        homePageRV.setAdapter(adapter);
 
-        List<HomePageModel> homePageModelList = new ArrayList<>();
-        homePageModelList.add(new HomePageModel(0, sliderModelList));
-
-        homePageModelList.add(new HomePageModel(1, "Deals of the day", horizontalProductScrollModelList));
-
-        homePageModelList.add(new HomePageModel(1, "Buy It Again", horizontalProductScrollModelList));
-
-        homePageModelList.add(new HomePageModel(0, sliderModelList));
-
-        homePageModelList.add(new HomePageModel(0, sliderModelList));
+        firebaseFirestore.collection("HOME").document("PROMO").collection("SLIDER").orderBy("index").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
 
-        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
-        testing.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+                if (task.isSuccessful()){
+
+                    for (QueryDocumentSnapshot docSnapshot: task.getResult()){
+
+                        if ((long)docSnapshot.get("view_type") == 0) {
+
+                            List<SliderModel> sliderModelList = new ArrayList<>();
+                            long no_of_banners = (long)docSnapshot.get("no_of_banners");
+                            for (long x = 1; x < no_of_banners +1;x++){
+
+                                sliderModelList.add(new SliderModel(docSnapshot.get("banner_"+x).toString(),
+                                        docSnapshot.get("banner_"+x+"_bg").toString()));
+                            }
+                            homePageModelList.add(new HomePageModel(0,sliderModelList));
+
+                        } else if ((long)docSnapshot.get("view_type") == 1) {
+
+
+
+                        }else if ((long)docSnapshot.get("view_type") == 2){
+
+                        }else if ((long)docSnapshot.get("view_type") == 3){
+
+                        }
+
+                    }
+                    adapter.notifyDataSetChanged();
+                    categoryAdaptor.notifyDataSetChanged();
+                } else {
+
+                    String error = task.getException().getMessage();
+                    Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+
 
         ///////////////////////
 

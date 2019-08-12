@@ -15,9 +15,11 @@ public class OrderDetailsItemLayoutAdapter extends RecyclerView.Adapter<OrderDet
 
 
     private List<OrderDetailsItemLayoutModel> orderDetailsItemLayoutModelList;
+    private boolean orderDetails;
 
-    public OrderDetailsItemLayoutAdapter(List<OrderDetailsItemLayoutModel> orderDetailsItemLayoutModelList) {
+    public OrderDetailsItemLayoutAdapter(List<OrderDetailsItemLayoutModel> orderDetailsItemLayoutModelList, boolean orderDetails) {
         this.orderDetailsItemLayoutModelList = orderDetailsItemLayoutModelList;
+        this.orderDetails = orderDetails;
     }
 
     @NonNull
@@ -62,11 +64,11 @@ public class OrderDetailsItemLayoutAdapter extends RecyclerView.Adapter<OrderDet
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            productImage = itemView.findViewById(R.id.od_product_image);
-            productPrice = itemView.findViewById(R.id.od_product_price);
-            productMrp = itemView.findViewById(R.id.od_product_mrp);
-            productName = itemView.findViewById(R.id.od_product_name);
-            productWeight = itemView.findViewById(R.id.od_product_weight);
+            productImage = itemView.findViewById(R.id.vm_product_image);
+            productPrice = itemView.findViewById(R.id.vm_product_price);
+            productMrp = itemView.findViewById(R.id.vm_product_mrp);
+            productName = itemView.findViewById(R.id.vm_product_name);
+            productWeight = itemView.findViewById(R.id.vm_product_weight);
             productQty = itemView.findViewById(R.id.qty_tv);
             quantity = itemView.findViewById(R.id.od_qty);
 
@@ -80,6 +82,18 @@ public class OrderDetailsItemLayoutAdapter extends RecyclerView.Adapter<OrderDet
             productName.setText(productNameText);
             productWeight.setText(productWeightText);
             quantity.setText(quantityText);
+
+            if (orderDetails) {
+
+                quantity.setVisibility(View.VISIBLE);
+                productQty.setVisibility(View.VISIBLE);
+
+            } else {
+
+                quantity.setVisibility(View.GONE);
+                productQty.setVisibility(View.GONE);
+
+            }
 
 
         }

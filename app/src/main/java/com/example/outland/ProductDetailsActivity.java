@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,8 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.outland.MainActivity.showCart;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
@@ -85,14 +88,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
-
+            finish();
             return true;
         } else if (id == R.id.main_search_icon){
 
             return true;
         }
         else if (id == R.id.main_cart_icon){
-
+            Intent cartIntent = new Intent(ProductDetailsActivity.this, MainActivity.class);
+            showCart = true;
+            startActivity(cartIntent);
             return true;
         }
 

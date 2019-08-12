@@ -2,19 +2,19 @@ package com.example.outland;
 
 public class SliderModel {
 
-    private int banner;
+    private String banner;
     private String bgColor;
 
-    public SliderModel(int banner, String bgColor) {
+    public SliderModel(String banner, String bgColor) {
         this.banner = banner;
         this.bgColor = bgColor;
     }
 
-    public int getBanner() {
+    public String getBanner() {
         return banner;
     }
 
-    public void setBanner(int banner) {
+    public void setBanner(String banner) {
         this.banner = banner;
     }
 

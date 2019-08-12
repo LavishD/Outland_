@@ -54,7 +54,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         orderDetailsItemLayoutModelList.add(new OrderDetailsItemLayoutModel(R.drawable.brd,"30","35","English Oven Premium Sandwich \nBread","350 g","Qty:","1"));
         orderDetailsItemLayoutModelList.add(new OrderDetailsItemLayoutModel(R.drawable.brd,"30","35","English Oven Premium Sandwich \nBread","350 g","Qty:","2"));
 
-        OrderDetailsItemLayoutAdapter orderDetailsItemLayoutAdapter = new OrderDetailsItemLayoutAdapter(orderDetailsItemLayoutModelList);
+        OrderDetailsItemLayoutAdapter orderDetailsItemLayoutAdapter = new OrderDetailsItemLayoutAdapter(orderDetailsItemLayoutModelList, true);
         orderDetailsRV.setAdapter(orderDetailsItemLayoutAdapter);
         orderDetailsItemLayoutAdapter.notifyDataSetChanged();
 

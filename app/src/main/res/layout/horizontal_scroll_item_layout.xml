@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hs_product_name" />
 
     <Button
-        android:id="@+id/hs_atc"
+        android:id="@+id/vm_atc"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"

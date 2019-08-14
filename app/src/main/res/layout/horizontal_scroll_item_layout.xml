@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="wrap_content"
+    android:orientation="vertical" android:layout_width="185dp"
     android:background="@drawable/slider_curve"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:padding="10dp"
     android:elevation="3dp"
     android:layout_margin="10dp"
@@ -15,7 +15,7 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginLeft="2dp"
-        android:paddingLeft="30dp"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,8 @@
         android:textColor="#8D8D8D"
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/hs_product_price"
-        app:layout_constraintStart_toEndOf="@+id/hs_product_price" />
+        app:layout_constraintStart_toEndOf="@+id/hs_product_price"
+        app:layout_constraintTop_toTopOf="@+id/hs_product_price" />
 
     <TextView
         android:id="@+id/hs_product_name"

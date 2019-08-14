@@ -202,8 +202,23 @@ public class HomeFragment extends Fragment {
                         } else if ((long)docSnapshot.get("view_type") == 1) {
 
 
+                            List<HorizontalProductScrollModel> horizontalProductScrollModelList =  new ArrayList<>();
+                            long no_of_products = (long)docSnapshot.get("no_of_products");
+                            for (long x = 1; x < no_of_products +1;x++){
+
+                                horizontalProductScrollModelList.add(new HorizontalProductScrollModel(docSnapshot.get("product_ID_"+x).toString(),
+                                        docSnapshot.get("product_image_"+x).toString(),
+                                        docSnapshot.get("product_price_"+x).toString(),
+                                        docSnapshot.get("product_mrp_"+x).toString(),
+                                        docSnapshot.get("product_name_"+x).toString(),
+                                        docSnapshot.get("product_weight_"+x).toString()));
+
+                            }
+                            homePageModelList.add(new HomePageModel(1,docSnapshot.get("layout_title").toString(), horizontalProductScrollModelList));
+
 
                         }else if ((long)docSnapshot.get("view_type") == 2){
+
 
                         }else if ((long)docSnapshot.get("view_type") == 3){
 

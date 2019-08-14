@@ -2,13 +2,15 @@ package com.example.outland;
 
 public class HorizontalProductScrollModel {
 
-    private int productImage;
+    private String productID;
+    private String productImage;
     private String productPrice;
     private String productMRP;
     private String productName;
     private String productWeight;
 
-    public HorizontalProductScrollModel(int productImage, String productPrice, String productMRP, String productName, String productWeight) {
+    public HorizontalProductScrollModel(String productID, String productImage, String productPrice, String productMRP, String productName, String productWeight) {
+        this.productID = productID;
         this.productImage = productImage;
         this.productPrice = productPrice;
         this.productMRP = productMRP;
@@ -16,11 +18,19 @@ public class HorizontalProductScrollModel {
         this.productWeight = productWeight;
     }
 
-    public int getProductImage() {
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getProductImage() {
         return productImage;
     }
 
-    public void setProductImage(int productImage) {
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 

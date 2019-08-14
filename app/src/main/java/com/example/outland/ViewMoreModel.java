@@ -2,13 +2,13 @@ package com.example.outland;
 
 public class ViewMoreModel {
 
-    private int productImage;
+    private String  productImage;
     private String productPrice;
     private String productMrp;
     private String productName;
     private String productWeight;
 
-    public ViewMoreModel(int productImage, String productPrice, String productMrp, String productName, String productWeight, String productQty, String quantity) {
+    public ViewMoreModel(String productImage, String productPrice, String productMrp, String productName, String productWeight) {
         this.productImage = productImage;
         this.productPrice = productPrice;
         this.productMrp = productMrp;
@@ -16,11 +16,13 @@ public class ViewMoreModel {
         this.productWeight = productWeight;
     }
 
-    public int getProductImage() {
+
+
+    public String getProductImage() {
         return productImage;
     }
 
-    public void setProductImage(int productImage) {
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 

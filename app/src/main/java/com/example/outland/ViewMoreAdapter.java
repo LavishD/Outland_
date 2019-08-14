@@ -9,6 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 public class ViewMoreAdapter extends RecyclerView.Adapter<ViewMoreAdapter.ViewHolder> {
@@ -30,7 +33,7 @@ public class ViewMoreAdapter extends RecyclerView.Adapter<ViewMoreAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        int resource = viewMoreModelList.get(position).getProductImage();
+        String resource = viewMoreModelList.get(position).getProductImage();
         String productPrice = viewMoreModelList.get(position).getProductPrice();
         String productMrp = viewMoreModelList.get(position).getProductMrp();
         String productName = viewMoreModelList.get(position).getProductName();
@@ -72,11 +75,12 @@ public class ViewMoreAdapter extends RecyclerView.Adapter<ViewMoreAdapter.ViewHo
 
         }
 
-        private void setData(int resource, String price, String productMrpText, String productNameText, String productWeightText){
+        private void setData(String resource, String price, String productMrpText, String productNameText, String productWeightText){
 
-            productImage.setImageResource(resource);
-            productPrice.setText(price);
-            productMrp.setText(productMrpText);
+            Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.brd)).into(productImage);
+
+            productPrice.setText("₹" + price);
+            productMrp.setText("₹" + productMrpText);
             productName.setText(productNameText);
             productWeight.setText(productWeightText);
             //quantity.setText(quantityText);

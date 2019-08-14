@@ -14,10 +14,8 @@
         android:id="@+id/hs_product_image"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:layout_marginLeft="2dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/brd" />

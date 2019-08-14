@@ -39,14 +39,30 @@ public class HomePageModel {
 
     private String title;
     private List<HorizontalProductScrollModel> horizontalProductScrollModelList;
+    private List<ViewMoreModel> viewMoreModelList;
 
+    public HomePageModel(int type, String title, List<HorizontalProductScrollModel> horizontalProductScrollModelList, List<ViewMoreModel> viewMoreModelList) {
+        this.type = type;
+        this.title = title;
+        this.horizontalProductScrollModelList = horizontalProductScrollModelList;
+        this.viewMoreModelList = viewMoreModelList;
+    }
 
+    public List<ViewMoreModel> getViewMoreModelList() {
+        return viewMoreModelList;
+    }
+
+    public void setViewMoreModelList(List<ViewMoreModel> viewMoreModelList) {
+        this.viewMoreModelList = viewMoreModelList;
+    }
 
     public HomePageModel(int type, String title, List<HorizontalProductScrollModel> horizontalProductScrollModelList) {
         this.type = type;
         this.title = title;
         this.horizontalProductScrollModelList = horizontalProductScrollModelList;
     }
+
+
     public String getTitle() {
         return title;
     }

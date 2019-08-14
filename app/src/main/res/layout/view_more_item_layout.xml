@@ -22,6 +22,7 @@
             android:id="@+id/vm_product_image"
             android:layout_width="125dp"
             android:layout_height="125dp"
+            android:scaleType="fitCenter"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -58,7 +59,7 @@
 
         <TextView
             android:id="@+id/vm_product_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -67,6 +68,7 @@
             android:text="English Oven Premium Sandwich\nBread"
             android:textColor="#000000"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/vm_product_image"
             app:layout_constraintTop_toBottomOf="@+id/vm_product_price" />
 
@@ -84,7 +86,7 @@
 
         <Button
             android:id="@+id/vm_atc"
-            android:layout_width="175dp"
+            android:layout_width="150dp"
             android:layout_height="35dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"

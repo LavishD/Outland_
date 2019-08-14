@@ -1,8 +1,13 @@
 package com.example.outland;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -67,8 +72,8 @@ public class MainActivity extends AppCompatActivity
         if (showCart) {
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            gotoFragment("My Cart", new MyCartFragment(),-2);
-        }else {
+            gotoFragment("My Cart", new MyCartFragment(), -2);
+        } else {
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
             drawer.addDrawerListener(toggle);
@@ -76,6 +81,8 @@ public class MainActivity extends AppCompatActivity
             setFragment(new HomeFragment(), HOME_FRAGMENT);
 
         }
+
+
     }
 
     @Override

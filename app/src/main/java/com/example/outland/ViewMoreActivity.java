@@ -17,6 +17,7 @@ import java.util.List;
 public class ViewMoreActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    public static List<ViewMoreModel> viewMoreModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +35,6 @@ public class ViewMoreActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-
-        List<ViewMoreModel> viewMoreModelList = new ArrayList<>();
-        viewMoreModelList.add(new ViewMoreModel(R.drawable.brd,"30","35","English Oven Premium Sandwich \nBread","350 g","Qty:","1"));
-        viewMoreModelList.add(new ViewMoreModel(R.drawable.brd,"30","35","English Oven Premium Sandwich \nBread","350 g","Qty:","2"));
-        viewMoreModelList.add(new ViewMoreModel(R.drawable.brd,"30","35","English Oven Premium Sandwich \nBread","350 g","Qty:","3"));
-        viewMoreModelList.add(new ViewMoreModel(R.drawable.brd,"30","35","English Oven Premium Sandwich \nBread","350 g","Qty:","1"));
-        viewMoreModelList.add(new ViewMoreModel(R.drawable.brd,"30","35","English Oven Premium Sandwich \nBread","350 g","Qty:","2"));
 
         ViewMoreAdapter adapter = new ViewMoreAdapter(viewMoreModelList);
         recyclerView.setAdapter(adapter);

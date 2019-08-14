@@ -71,8 +71,9 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                     break;
             case HomePageModel.HORRIZONTAL_PRODUCT_VIEW:
                 String title = homePageModelList.get(position).getTitle();
+                List<ViewMoreModel> viewMoreModelList = homePageModelList.get(position).getViewMoreModelList();
                 List<HorizontalProductScrollModel> horizontalProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
-                ((HSProductViewHolder)viewHolder).setHSProductLayout(horizontalProductScrollModelList, title);
+                ((HSProductViewHolder)viewHolder).setHSProductLayout(horizontalProductScrollModelList, title, viewMoreModelList);
                 break;
                 default:
                     return;
@@ -235,7 +236,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             hSRecyclerView.setRecycledViewPool(recycledViewPool);
         }
 
-        private void setHSProductLayout(List<HorizontalProductScrollModel> horizontalProductScrollModelList, String title){
+        private void setHSProductLayout(List<HorizontalProductScrollModel> horizontalProductScrollModelList, final String title, final List<ViewMoreModel> viewMoreModelList){
 
             hSlayoutTextView.setText(title);
 
@@ -245,8 +246,10 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 hSViewMoreTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        ViewMoreActivity.viewMoreModelList = viewMoreModelList;
+
                         Intent viewMoreIntent = new Intent(itemView.getContext(), ViewMoreActivity.class);
-                        //viewMoreIntent.putExtra("")
+                        viewMoreIntent.putExtra("title", title);
                         itemView.getContext().startActivity(viewMoreIntent);
                     }
                 });

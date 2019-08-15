@@ -35,9 +35,10 @@ import java.util.TimerTask;
 
 import static com.example.outland.DBQueries.categoryModelList;
 import static com.example.outland.DBQueries.firebaseFirestore;
-import static com.example.outland.DBQueries.homePageModelList;
+import static com.example.outland.DBQueries.lists;
 import static com.example.outland.DBQueries.loadCategories;
 import static com.example.outland.DBQueries.loadFragmentData;
+import static com.example.outland.DBQueries.loadedCategoriesName;
 
 
 /**
@@ -137,19 +138,20 @@ public class HomeFragment extends Fragment {
             LinearLayoutManager testingLayoutManger = new LinearLayoutManager(getContext());
             testingLayoutManger.setOrientation(RecyclerView.VERTICAL);
             homePageRV.setLayoutManager(testingLayoutManger);
-            homePageAdapter = new HomePageAdapter(homePageModelList);
-            homePageRV.setAdapter(homePageAdapter);
 
-            if (homePageModelList.size() == 0){
-
-                loadFragmentData(homePageAdapter, getContext());
+            if (lists.size() == 0){
+                loadedCategoriesName.add("Home");
+                lists.add(new ArrayList<HomePageModel>());
+                homePageAdapter = new HomePageAdapter(lists.get(0));
+                loadFragmentData(homePageAdapter, getContext(), 0, "Home");
 
             } else {
-
-                categoryAdaptor.notifyDataSetChanged();
+                homePageAdapter = new HomePageAdapter(lists.get(0));
+                homePageAdapter.notifyDataSetChanged();
 
             }
 
+            homePageRV.setAdapter(homePageAdapter);
 
 
         } else {

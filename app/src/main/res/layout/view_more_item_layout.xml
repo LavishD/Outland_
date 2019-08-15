@@ -22,8 +22,9 @@
             android:id="@+id/vm_product_image"
             android:layout_width="125dp"
             android:layout_height="125dp"
-            android:scaleType="fitCenter"
             android:layout_marginStart="8dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/brd" />

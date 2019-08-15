@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +20,8 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
 
 
     private List<CategoryModel> categoryModelList;
+
+
 
     public CategoryAdaptor(List<CategoryModel> categoryModelList) {
         this.categoryModelList = categoryModelList;
@@ -36,8 +39,8 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
 
         String icon = categoryModelList.get(position).getCategoryIconLink();
         String name = categoryModelList.get(position).getCategoryName();
-        holder.setCategoryName(name);
-        holder.setCategoryIcon(icon);
+        boolean isVisible = categoryModelList.get(position).isVisible();
+        holder.setCategoryName(icon, name, position);
 
     }
 
@@ -50,32 +53,57 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
 
         private ImageView categoryIcon;
         private TextView categoryName;
+        private ConstraintLayout categoryItemBGLayout;
+        private ConstraintLayout categoryItemLayout;
+        private RecyclerView category_recycler_view;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryIcon = itemView.findViewById(R.id.category_icon);
             categoryName = itemView.findViewById(R.id.category_name);
+            categoryItemLayout = itemView.findViewById(R.id.layout_testing);
+            categoryItemBGLayout = itemView.findViewById(R.id.category_bg_layout);
+            category_recycler_view = itemView.findViewById(R.id.category_recycler_view);
         }
 
-        private  void  setCategoryIcon(String iconUrl){
 
-            //set category icons here
-            Glide.with(itemView.getContext()).load(iconUrl).apply(new RequestOptions().placeholder(R.mipmap.home_icon)).into(categoryIcon);
 
-        }
 
-        private void setCategoryName(final String name){
+        private void setCategoryName(String iconUrl, final String name, final int position){
 
+
+
+            if (!iconUrl.equals("null")) {
+                Glide.with(itemView.getContext()).load(iconUrl).apply(new RequestOptions().placeholder(R.mipmap.home_icon)).into(categoryIcon);
+            }
             categoryName.setText(name);
+
+
+          //  if (isVisible){
+
+                categoryName.setVisibility(View.VISIBLE);
+                categoryIcon.setVisibility(View.VISIBLE);
+              //  categoryItemLayout.setVisibility(View.VISIBLE);
+//                category_recycler_view.setVisibility(View.VISIBLE);
+
+            //} else {
+             //   categoryName.setVisibility(View.GONE);
+              //  categoryIcon.setVisibility(View.GONE);
+               // categoryItemLayout.setVisibility(View.GONE);
+                //
+                //category_recycler_view.setVisibility(View.GONE);
+
+            //}
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    Intent categoryIntent = new Intent(itemView.getContext(), CategoryActivity.class);
-                    categoryIntent.putExtra("CategoryName", name);
-                    itemView.getContext().startActivity(categoryIntent);
-
+                    if (position != 0) {
+                        Intent categoryIntent = new Intent(itemView.getContext(), CategoryActivity.class);
+                        categoryIntent.putExtra("CategoryName", name);
+                        itemView.getContext().startActivity(categoryIntent);
+                    }
 
                 }
             });

@@ -12,14 +12,20 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.outland.DBQueries.lists;
+import static com.example.outland.DBQueries.loadFragmentData;
+import static com.example.outland.DBQueries.loadedCategoriesName;
+
 public class CategoryActivity extends AppCompatActivity {
 
     private RecyclerView categoryRecyclerView;
+    private HomePageAdapter homePageAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        super.onCreate(savedInstanceState);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -37,12 +43,31 @@ public class CategoryActivity extends AppCompatActivity {
         testingLayoutManger.setOrientation(RecyclerView.VERTICAL);
         categoryRecyclerView.setLayoutManager(testingLayoutManger);
 
-        List<HomePageModel> homePageModelList = new ArrayList<>();
+
+        int listPos = 0;
+        for (int x = 0; x < loadedCategoriesName.size(); x++) {
+
+            if (loadedCategoriesName.get(x).equals(title)){
+
+                listPos = x;
+
+            }
+        }
+
+        if (listPos == 0){
+            loadedCategoriesName.add(title);
+            lists.add(new ArrayList<HomePageModel>());
+            homePageAdapter = new HomePageAdapter(lists.get(loadedCategoriesName.size() - 1));
+            loadFragmentData(homePageAdapter, this, loadedCategoriesName.size() - 1, title);
+        }else {
+            homePageAdapter = new HomePageAdapter(lists.get(listPos));
 
 
-        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
-        categoryRecyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+
+        }
+
+        categoryRecyclerView.setAdapter(homePageAdapter);
+        homePageAdapter.notifyDataSetChanged();
 
         ///////////////////////
 

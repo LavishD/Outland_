@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.AnimatorRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +26,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
     private List<HomePageModel> homePageModelList;
     private RecyclerView.RecycledViewPool recycledViewPool;
+    private int lastPos = -1;
 
     public HomePageAdapter(List<HomePageModel> homePageModelList) {
         this.homePageModelList = homePageModelList;
@@ -64,22 +68,28 @@ public class HomePageAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
-        switch (homePageModelList.get(position).getType()){
+        switch (homePageModelList.get(position).getType()) {
             case HomePageModel.BANNER_SLIDER:
-                    List<SliderModel> sliderModelList = homePageModelList.get(position).getSliderModelList();
-                    ((BannerSliderViewHolder) viewHolder).setBannerSliderViewPager(sliderModelList);
-                    break;
+                List<SliderModel> sliderModelList = homePageModelList.get(position).getSliderModelList();
+                ((BannerSliderViewHolder) viewHolder).setBannerSliderViewPager(sliderModelList);
+                break;
             case HomePageModel.HORRIZONTAL_PRODUCT_VIEW:
                 String title = homePageModelList.get(position).getTitle();
                 List<ViewMoreModel> viewMoreModelList = homePageModelList.get(position).getViewMoreModelList();
                 List<HorizontalProductScrollModel> horizontalProductScrollModelList = homePageModelList.get(position).getHorizontalProductScrollModelList();
-                ((HSProductViewHolder)viewHolder).setHSProductLayout(horizontalProductScrollModelList, title, viewMoreModelList);
+                ((HSProductViewHolder) viewHolder).setHSProductLayout(horizontalProductScrollModelList, title, viewMoreModelList);
                 break;
-                default:
-                    return;
+            default:
+                return;
 
         }
 
+
+        if (lastPos < position) {
+            Animation animation = AnimationUtils.loadAnimation(viewHolder.itemView.getContext(), R.anim.fade_in);
+            viewHolder.itemView.setAnimation(animation);
+            lastPos = position;
+        }
     }
 
     @Override

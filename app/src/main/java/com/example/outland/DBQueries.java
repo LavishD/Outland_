@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,7 +24,7 @@ public class DBQueries {
     public static List<String> loadedCategoriesName = new ArrayList<>();
 
 
-    public static void loadCategories(final CategoryAdaptor categoryAdaptor, final Context context) {
+    public static void loadCategories( final CategoryAdaptor categoryAdaptor, final Context context) {
 
 
         firebaseFirestore.collection("CATEGORIES").orderBy("index").get()
@@ -42,6 +43,7 @@ public class DBQueries {
 
                             }
                             categoryAdaptor.notifyDataSetChanged();
+                            HomeFragment.swipeRefreshLayout.setRefreshing(false);
                         } else {
 
                             String error = task.getException().getMessage();

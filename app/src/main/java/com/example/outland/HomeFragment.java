@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
@@ -93,9 +94,13 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    public static SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView categoryRecyclerView;
     private CategoryAdaptor categoryAdaptor;
     private ImageView noInternetConnection;
+
+    private ConnectivityManager connectivityManager;
+    private NetworkInfo networkInfo;
 
 
 
@@ -105,10 +110,14 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        swipeRefreshLayout =  view.findViewById(R.id.refresh_layout);
         noInternetConnection = view.findViewById(R.id.no_internet_connection);
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        swipeRefreshLayout.setColorSchemeColors(getContext().getResources().getColor(R.color.colorPrimary), getContext().getResources().getColor(R.color.colorPrimary), getContext().getResources().getColor(R.color.colorPrimary));
+
+        connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected() == true) {
             noInternetConnection.setVisibility(View.GONE);
@@ -123,7 +132,7 @@ public class HomeFragment extends Fragment {
 
             if (categoryModelList.size() == 0){
 
-                loadCategories(categoryAdaptor, getContext());
+                loadCategories( categoryAdaptor, getContext());
 
             } else {
 
@@ -159,6 +168,31 @@ public class HomeFragment extends Fragment {
             noInternetConnection.setVisibility(View.VISIBLE);
         }
 
+        //////// Refresh Layout
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    swipeRefreshLayout.setRefreshing(true);
+
+                    categoryModelList.clear();
+                    lists.clear();
+                    loadedCategoriesName.clear();
+
+                    if (networkInfo != null && networkInfo.isConnected() == true) {
+                        noInternetConnection.setVisibility(View.GONE);
+
+                        loadCategories( categoryAdaptor, getContext());
+                        lists.add(new ArrayList<HomePageModel>());
+                        loadFragmentData(homePageAdapter, getContext(), 0, "Home");
+
+
+                    } else {
+                        Glide.with(getContext()).load(R.drawable.brd).into(noInternetConnection);
+                        noInternetConnection.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        //////// Refresh Layout
 
 
         return view;

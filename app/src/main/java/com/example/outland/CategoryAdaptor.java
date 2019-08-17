@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
 
 
     private List<CategoryModel> categoryModelList;
+    private int lastPos = -1;
 
 
 
@@ -41,6 +44,13 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
         String name = categoryModelList.get(position).getCategoryName();
         boolean isVisible = categoryModelList.get(position).isVisible();
         holder.setCategoryName(icon, name, position);
+
+
+        if (lastPos < position) {
+            Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.fade_in);
+            holder.itemView.setAnimation(animation);
+            lastPos = position;
+        }
 
     }
 

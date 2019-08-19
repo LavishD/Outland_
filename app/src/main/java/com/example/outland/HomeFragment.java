@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -120,6 +121,7 @@ public class HomeFragment extends Fragment {
         networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected() == true) {
+            MainActivity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             noInternetConnection.setVisibility(View.GONE);
             categoryRecyclerView = view.findViewById(R.id.category_recycler_view);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -164,6 +166,7 @@ public class HomeFragment extends Fragment {
 
 
         } else {
+            MainActivity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             Glide.with(this).load(R.drawable.brd).into(noInternetConnection);
             noInternetConnection.setVisibility(View.VISIBLE);
         }
@@ -179,8 +182,8 @@ public class HomeFragment extends Fragment {
                     loadedCategoriesName.clear();
 
                     if (networkInfo != null && networkInfo.isConnected() == true) {
+                        MainActivity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                         noInternetConnection.setVisibility(View.GONE);
-
                         loadCategories( categoryAdaptor, getContext());
                         lists.add(new ArrayList<HomePageModel>());
                         loadFragmentData(homePageAdapter, getContext(), 0, "Home");
@@ -188,7 +191,10 @@ public class HomeFragment extends Fragment {
 
                     } else {
                         Glide.with(getContext()).load(R.drawable.brd).into(noInternetConnection);
+                        MainActivity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                         noInternetConnection.setVisibility(View.VISIBLE);
+
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 }
             });

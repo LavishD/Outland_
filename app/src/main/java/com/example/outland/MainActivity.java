@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -19,6 +20,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity
     private NavigationView navigationView;
     private ImageView actionbarLogo;
 
+    public static DrawerLayout drawer;
+    private int scrollFlags;
+    private AppBarLayout.LayoutParams params;
 
     private FrameLayout frameLayout;
     private int currentFragment = -1;
@@ -59,9 +64,11 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
+        params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        scrollFlags = params.getScrollFlags();
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -160,6 +167,11 @@ public class MainActivity extends AppCompatActivity
         if (fragmentNo == CART_FRAGMENT) {
 
             navigationView.getMenu().getItem(2).setChecked(true);
+            params.setScrollFlags(0);
+        } else {
+
+            params.setScrollFlags(scrollFlags);
+
         }
     }
 
@@ -189,6 +201,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_my_account) {
 
         } else if (id == R.id.nav_sign_out) {
+
+            FirebaseAuth.getInstance().signOut();
+            Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(registerIntent);
+            finish();
 
         }
 

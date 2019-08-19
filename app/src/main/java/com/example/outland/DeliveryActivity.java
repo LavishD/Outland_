@@ -12,6 +12,7 @@ import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,11 @@ public class DeliveryActivity extends AppCompatActivity {
     private RecyclerView deliveryRv;
     private Button changeOrAddBtn;
     public static final int SELECT_ADDRESS = 0;
+    private TextView totalAmount;
+
+    private TextView fullName;
+    private TextView address;
+    private TextView locality;
 
 
     @Override
@@ -39,19 +45,18 @@ public class DeliveryActivity extends AppCompatActivity {
 
          changeOrAddBtn = findViewById(R.id.change_add_address);
          deliveryRv = findViewById(R.id.deliveryRV);
+         totalAmount = findViewById(R.id.total_cart_price);
+
+         fullName = findViewById(R.id.name_tv);
+         address = findViewById(R.id.address_tv);
+         locality = findViewById(R.id.pinCode);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         deliveryRv.setLayoutManager(layoutManager);
 
-        List<CartItemModel> cartItemModelList = new ArrayList<>();
-        cartItemModelList.add(new CartItemModel(0, R.drawable.brd, "₹46","₹30", "English Oven Premium Sandwich Bread", "350g", 1));
-        cartItemModelList.add(new CartItemModel(0, R.drawable.brd, "₹46","₹30", "English Oven Premium Sandwich Bread", "350g", 2));
-        cartItemModelList.add(new CartItemModel(0, R.drawable.brd, "₹46","₹30", "English Oven Premium Sandwich Bread", "350g", 6));
-        cartItemModelList.add(new CartItemModel(1, "₹138", "₹48", "FREE", "₹90", "₹90"));
-
-        CartAdapter cartAdapter = new CartAdapter(cartItemModelList);
+        CartAdapter cartAdapter = new CartAdapter(DBQueries.cartItemModelList);
         deliveryRv.setAdapter(cartAdapter);
         cartAdapter.notifyDataSetChanged();
 
@@ -66,6 +71,17 @@ public class DeliveryActivity extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        fullName.setText(DBQueries.addressesModelList.get(DBQueries.selectedAddress).getFullName());
+        address.setText(DBQueries.addressesModelList.get(DBQueries.selectedAddress).getAddress());
+        locality.setText(DBQueries.addressesModelList.get(DBQueries.selectedAddress).getLocality());
 
     }
 

@@ -13,11 +13,12 @@ import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter {
     private List<CartItemModel> cartItemModelList;
+    //private TextView cartTotalAmount;
 
 
-
-    public CartAdapter(List<CartItemModel> cartItemModelList) {
+    public CartAdapter(List<CartItemModel> cartItemModelList /*TextView cartTotalAmount*/) {
         this.cartItemModelList = cartItemModelList;
+       // this.cartTotalAmount = cartTotalAmount;
     }
 
     @Override
@@ -73,10 +74,10 @@ public class CartAdapter extends RecyclerView.Adapter {
                 String discountReceived = cartItemModelList.get(position).getDiscountReceived();
                 String deliveryCharges = cartItemModelList.get(position).getDeliverCharges();
                 String subtotal = cartItemModelList.get(position).getSubTotal();
-                //String checkoutTotal = cartItemModelList.get(position).getCheckoutTotal();
+                // String checkoutTotal = cartItemModelList.get(position).getCheckoutTotal();
 
 
-                ((CartSummaryViewHolder)viewHolder).setSummary(totalMrp, discountReceived, deliveryCharges,subtotal /*checkoutTotal*/);
+                ((CartSummaryViewHolder)viewHolder).setSummary(totalMrp, discountReceived, deliveryCharges,subtotal);
 
                 break;
             default:
@@ -140,17 +141,17 @@ public class CartAdapter extends RecyclerView.Adapter {
             discountRecevied = itemView.findViewById(R.id.summary_discount_amount);
             deliveryCharges = itemView.findViewById(R.id.summary_delivery_charges_amount);
             subtotal = itemView.findViewById(R.id.summary_subtotal);
-            // checkoutTotal = itemView.findViewById(R.id.total_cart_price);
+           // checkoutTotal = itemView.findViewById(R.id.total_cart_price);
 
         }
 
-        private void setSummary(String mrpText, String discountText, String deliveryChargesText, String subtotalText /* String checkoutTotalText*/){
+        private void setSummary(String mrpText, String discountText, String deliveryChargesText, String subtotalText /*String checkoutTotalText*/){
 
             totalmrp.setText(mrpText);
             discountRecevied.setText(discountText);
             deliveryCharges.setText(deliveryChargesText);
             subtotal.setText(subtotalText);
-            // checkoutTotal.setText(checkoutTotalText);
+           // checkoutTotal.setText(checkoutTotalText);
 
         }
     }

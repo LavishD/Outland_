@@ -67,7 +67,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         firebaseFirestore = firebaseFirestore.getInstance();
 
         final List<String> productImages = new ArrayList<>();
-
         firebaseFirestore.collection("PRODUCTS").document("UxSxKPllg0gjClWehLRv").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

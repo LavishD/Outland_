@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,8 @@ public class MyCartFragment extends Fragment {
     private RecyclerView cartItemsRV;
     private Button checkoutBtn;
 
+  //  private TextView totalAmount;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +42,7 @@ public class MyCartFragment extends Fragment {
 
         cartItemsRV = view.findViewById(R.id.cart_items_rv);
         checkoutBtn = view.findViewById(R.id.checkoutBtn);
+        //totalAmount = view.findViewById(R.id.total_cart_price);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -61,8 +65,11 @@ public class MyCartFragment extends Fragment {
         checkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent deliveryIntent = new Intent(getContext(), AddAddressActivity.class);
-                getContext().startActivity(deliveryIntent);
+
+                DBQueries.loadAddresses(getContext());
+               //  Intent deliveryIntent = new Intent(getContext(), AddAddressActivity.class);
+
+
             }
         });
 

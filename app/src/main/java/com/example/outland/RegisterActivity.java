@@ -27,10 +27,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import com.goodiebag.pinview.Pinview;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import org.w3c.dom.Text;
@@ -58,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
     String countryCode;
     private ProgressBar progressBar;
     private FirebaseFirestore firebaseFirestore;
+   // private FirebaseAuth firebaseAuth;
     private Map<Object,String> userdata;
     private TextView otpTextView;
     // public static boolean onBackPress = false;
@@ -80,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         phoneEditText = (EditText) findViewById(R.id.phoneText);
         nameEditText = (EditText)findViewById(R.id.nameText);
         firebaseFirestore = FirebaseFirestore.getInstance();
+        //firebaseAuth = FirebaseAuth.getInstance();
         otpTextView = (TextView) findViewById(R.id.otp_text);
 
 
@@ -245,19 +251,63 @@ public class RegisterActivity extends AppCompatActivity {
                             userdata.put("Phone Number", phoneNumber);
 
 
-                            firebaseFirestore.collection("USERS").add(userdata)
-                                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            firebaseFirestore.collection("USERS").document(mAuth.getUid()).set(userdata)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
-                                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                                        public void onComplete(@NonNull Task<Void> task) {
 
                                             if (task.isSuccessful()){
 
+                                                CollectionReference userDataReference =  firebaseFirestore.collection("USERS").document(mAuth.getUid()).collection("USER_DATA");
 
-                                                //verification successful we will start the profile activity
-                                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                startActivity(intent);
+                                                ////// MAPS
 
+                                                Map<String, Object> cartMap = new HashMap<>();
+                                                cartMap.put("list_size", (long) 0);
+
+                                                Map<String, Object> myAddressesMap = new HashMap<>();
+                                                cartMap.put("list_size", (long) 0);
+
+                                                /////// MAPS
+
+                                                //////// LISTS
+
+                                                final List<String> docNames = new ArrayList<>();
+                                                docNames.add("MY_CART");
+                                                docNames.add("MY_ADDRESSES");
+
+                                                List<Map<String, Object>> docFields = new ArrayList<>();
+                                                docFields.add(cartMap);
+                                                docFields.add(myAddressesMap);
+
+
+                                                ////////// LISTS
+
+
+                                                for (int x = 0; x < docNames.size(); x++){
+
+                                                    final int finalX = x;
+                                                    userDataReference.document(docNames.get(x)).set(docFields.get(x)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                                            if (task.isSuccessful()){
+                                                                if (finalX == docNames.size() - 1) {
+
+                                                                    mainIntent();
+
+                                                                }
+                                                            }else {
+
+                                                                String error = task.getException().getMessage();
+                                                                Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_SHORT).show();
+
+                                                            }
+
+                                                        }
+                                                    });
+
+                                                }
 
 
                                             }else {
@@ -268,11 +318,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                                             }
 
-
-
                                         }
                                     });
-
 
 
 
@@ -333,6 +380,14 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         }
+
+    }
+
+    private void mainIntent(){
+
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
 
     }
 

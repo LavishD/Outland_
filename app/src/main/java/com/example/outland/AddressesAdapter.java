@@ -20,11 +20,12 @@ public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.View
 
     private List<AddressesModel> addressesModelList;
     private int MODE;
-    private int preSelectedPos = -1;
+    private int preSelectedPos;
 
     public AddressesAdapter(List<AddressesModel> addressesModelList, int MODE) {
         this.addressesModelList = addressesModelList;
         this.MODE = MODE;
+        preSelectedPos = DBQueries.selectedAddress;
     }
 
     @NonNull
@@ -102,6 +103,7 @@ public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.View
                             addressesModelList.get(preSelectedPos).setSelected(false);
                             refreshItem(preSelectedPos, position);
                             preSelectedPos = position;
+                            DBQueries.selectedAddress = position;
                         }
                     }
                 });
